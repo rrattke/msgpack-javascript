@@ -122,6 +122,7 @@ describe("ExtensionCodec", () => {
         }
       },
       decode: (data: Uint8Array, extType, context) => {
+        /* eslint-disable @typescript-eslint/no-unused-expressions */
         extType;
         const decoded = decode(data, { extensionCodec, context }) as { magic: number };
         context.hasVisited({ decoding: decoded.magic, ctx: context.ctxVal });

@@ -16,7 +16,8 @@ module.exports = {
   ],
   plugins: [
     "@typescript-eslint/eslint-plugin",
-    "eslint-plugin-tsdoc"
+    "eslint-plugin-tsdoc",
+    "@stylistic/ts"
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -49,10 +50,10 @@ module.exports = {
       { "selector": "typeLike", "format": ["PascalCase"], "leadingUnderscore": "allow" },
     ],
     "@typescript-eslint/restrict-plus-operands": "warn",
-    "@typescript-eslint/no-throw-literal": "warn",
+    "@typescript-eslint/only-throw-error": "warn",
     "@typescript-eslint/unbound-method": "warn",
     "@typescript-eslint/explicit-module-boundary-types": "warn",
-    "@typescript-eslint/no-extra-semi": "warn",
+    "@stylistic/ts/no-extra-semi": "warn",
     "@typescript-eslint/no-extra-non-null-assertion": "warn",
     "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
     "@typescript-eslint/no-use-before-define": "warn",
@@ -85,5 +86,6 @@ module.exports = {
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-require-imports": "off",	
   },
 };
