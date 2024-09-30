@@ -5,16 +5,16 @@
   "author": "The MessagePack community",
   "license": "ISC",
   "main": "./dist/index.js",
-  "module": "./dist.es5+esm/index.mjs",
+  "module": "./dist.es2022/index.mjs",
   "cdn": "./dist.es5+umd/msgpack.min.js",
   "unpkg": "./dist.es5+umd/msgpack.min.js",
   "types": "./dist/index.d.ts",
   "sideEffects": false,
   "scripts": {
     "build": "npm publish --dry-run",
-    "prepare": "npm run clean && webpack --bail && tsc --build tsconfig.dist.json tsconfig.dist.es5+esm.json && ts-node tools/esmify.ts dist.es5+esm/*.js dist.es5+esm/*/*.js",
+    "prepare": "npm run clean && webpack --bail && tsc --build tsconfig.dist.json tsconfig.dist.es2022.json && ts-node tools/esmify.ts dist.es2022/*.js dist.es2022/*/*.js",
     "prepublishOnly": "npm run test:dist",
-    "clean": "rimraf build dist dist.*",
+    "clean": "rimraf build dist",
     "test": "mocha 'test/**/*.test.ts'",
     "test:dist": "npm run lint && npm run test && npm run test:browser && npm run test:deno",
     "test:cover": "npm run cover:clean && npx nyc --no-clean npm run 'test' && npm run cover:report",
@@ -30,7 +30,7 @@
     "lint": "eslint --ext .ts src test",
     "lint:fix": "prettier --loglevel=warn --write 'src/**/*.ts' 'test/**/*.ts' && eslint --fix --ext .ts src test",
     "lint:print-config": "eslint --print-config .eslintrc.js",
-    "update-dependencies": "npx rimraf node_modules/ package-lock.json ; npm install ; npm audit fix --force ; git restore package.json ; npm install"
+    "update-dependencies": "npx rimraf node_modules/ package-lock.json ; npm install ; npm audit fix ; git restore package.json ; npm install"
   },
   "homepage": "https://msgpack.org/",
   "repository": {
