@@ -88,13 +88,16 @@ export function utf8EncodeJs(str: string, output: Uint8Array, outputOffset: numb
 // They are available in Node.js since v12 LTS as well:
 // https://nodejs.org/api/globals.html#textencoder
 
-const sharedTextEncoder = new TextEncoder();
+let sharedTextEncoder: TextEncoder;
 
 // This threshold should be determined by benchmarking, which might vary in engines and input data.
 // Run `npx ts-node benchmark/encode-string.ts` for details.
 const TEXT_ENCODER_THRESHOLD = 50;
 
 export function utf8EncodeTE(str: string, output: Uint8Array, outputOffset: number): void {
+  if (!sharedTextEncoder) {
+    sharedTextEncoder = new TextEncoder();
+  }
   sharedTextEncoder.encodeInto(str, output.subarray(outputOffset));
 }
 
@@ -157,13 +160,16 @@ export function utf8DecodeJs(bytes: Uint8Array, inputOffset: number, byteLength:
   return result;
 }
 
-const sharedTextDecoder = new TextDecoder();
+let sharedTextDecoder: TextDecoder;
 
 // This threshold should be determined by benchmarking, which might vary in engines and input data.
 // Run `npx ts-node benchmark/decode-string.ts` for details.
 const TEXT_DECODER_THRESHOLD = 200;
 
 export function utf8DecodeTD(bytes: Uint8Array, inputOffset: number, byteLength: number): string {
+  if (!sharedTextDecoder) {
+    sharedTextDecoder = new TextDecoder();
+  } 
   const stringBytes = bytes.subarray(inputOffset, inputOffset + byteLength);
   return sharedTextDecoder.decode(stringBytes);
 }
