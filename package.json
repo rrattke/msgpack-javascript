@@ -12,7 +12,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "npm publish --dry-run",
-    "prepare": "npm run clean && webpack --bail && tsc --build tsconfig.dist.json tsconfig.dist.es2022.json && ts-node tools/esmify.ts 'dist.es2022/**/*.js'",
+    "prepare": "npm run clean && webpack --bail && tsc --build tsconfig.dist.json tsconfig.dist.es2022.json && ts-node tools/esmify.ts \"dist.es2022/**/*.js\"",
     "prepublishOnly": "npm run test:dist",
     "clean": "shx rm -rf build dist dist.*",
     "test": "mocha 'test/**/*.test.ts'",
